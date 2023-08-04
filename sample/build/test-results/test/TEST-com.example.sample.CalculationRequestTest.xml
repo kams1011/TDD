@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.sample.CalculationRequestTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2023-08-04T11:15:39" hostname="DESKTOP-P5GE5IL" time="0.012">
+  <properties/>
+  <testcase name="유효한_길이의_연산자가_들어오지_않으면_에러를_던진다()" classname="com.example.sample.CalculationRequestTest" time="0.003"/>
+  <testcase name="유효한_길이의_숫자가_들어오지_않으면_에러를_던진다()" classname="com.example.sample.CalculationRequestTest" time="0.003"/>
+  <testcase name="세자리_숫자가_넘어가는_유효한_숫자를_파싱할_수_있다()" classname="com.example.sample.CalculationRequestTest" time="0.001"/>
+  <testcase name="유효한_숫자를_파싱할_수_있다()" classname="com.example.sample.CalculationRequestTest" time="0.001"/>
+  <testcase name="유효한_연산자가_들어오지_않으면_에러를_던진다()" classname="com.example.sample.CalculationRequestTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

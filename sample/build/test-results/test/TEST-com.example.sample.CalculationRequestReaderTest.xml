@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.sample.CalculationRequestReaderTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-08-04T11:15:39" hostname="DESKTOP-P5GE5IL" time="0.051">
+  <properties/>
+  <testcase name="System_in으로_데이터를_읽어들일_수_있다()" classname="com.example.sample.CalculationRequestReaderTest" time="0.051"/>
+  <system-out><![CDATA[Enter two numbers and an operator (e.g 1 + 2): 
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
