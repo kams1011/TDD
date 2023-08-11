@@ -23,7 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserService {
 
     private final UserRepository userRepository;
-    private final JavaMailSender mailSender;
+    private final CertificationService certificationService;
 
     public Optional<UserEntity> findById(long id) {
         return userRepository.findByIdAndStatus(id, UserStatus.ACTIVE);
@@ -48,8 +48,7 @@ public class UserService {
         userEntity.setStatus(UserStatus.PENDING);
         userEntity.setCertificationCode(UUID.randomUUID().toString());
         userEntity = userRepository.save(userEntity);
-        String certificationUrl = generateCertificationUrl(userEntity);
-        sendCertificationEmail(userCreate.getEmail(), certificationUrl);
+        certificationService.send(userCreate.getEmail(), userEntity.getId(), userEntity.getCertificationCode());
         return userEntity;
     }
 
@@ -77,15 +76,5 @@ public class UserService {
         userEntity.setStatus(UserStatus.ACTIVE);
     }
 
-    private void sendCertificationEmail(String email, String certificationUrl) {
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(email);
-        message.setSubject("Please certify your email address");
-        message.setText("Please click the following link to certify your email address: " + certificationUrl);
-        mailSender.send(message);
-    }
 
-    private String generateCertificationUrl(UserEntity userEntity) {
-        return "http://localhost:8080/api/users/" + userEntity.getId() + "/verify?certificationCode=" + userEntity.getCertificationCode();
-    }
 }
