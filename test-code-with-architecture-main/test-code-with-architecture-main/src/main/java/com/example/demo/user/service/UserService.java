@@ -6,10 +6,12 @@ import com.example.demo.user.domain.UserStatus;
 import com.example.demo.user.domain.dto.UserCreate;
 import com.example.demo.user.domain.dto.UserUpdate;
 import com.example.demo.user.infrastructure.UserEntity;
-import com.example.demo.user.infrastructure.UserRepository;
+import com.example.demo.user.infrastructure.UserJpaRepository;
 import java.time.Clock;
 import java.util.Optional;
 import java.util.UUID;
+
+import com.example.demo.user.service.port.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
