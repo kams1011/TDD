@@ -43,7 +43,7 @@ public class PostEntity {
                 .content(content)
                 .createdAt(createdAt)
                 .modifiedAt(modifiedAt)
-                .writer(writer)
+                .writer(writer.toModel())
                 .build();
     }
 
@@ -53,7 +53,7 @@ public class PostEntity {
         postEntity.content = post.getContent();
         postEntity.createdAt = post.getCreatedAt();
         postEntity.modifiedAt = post.getModifiedAt();
-        postEntity.writer = post.getWriter();
+        postEntity.writer = UserEntity.fromModel(post.getWriter());
         return postEntity;
     }
 

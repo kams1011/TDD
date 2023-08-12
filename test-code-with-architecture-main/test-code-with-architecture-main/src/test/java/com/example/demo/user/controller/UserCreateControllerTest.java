@@ -40,7 +40,7 @@ public class UserCreateControllerTest {
 
 
     @Test
-    void 사용자_회원_까입을_할_수_있고_회원가입된_사용자는_PEDING_상태이다() throws Exception{
+    void 사용자_회원_가입을_할_수_있고_회원가입된_사용자는_PEDING_상태이다() throws Exception{
         //given
         UserCreate dto = UserCreate.builder()
                 .email("kams1013@naver.com")

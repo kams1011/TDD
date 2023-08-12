@@ -2,6 +2,7 @@ package com.example.demo.user.service;
 
 import com.example.demo.common.domain.exception.CertificationCodeNotMatchedException;
 import com.example.demo.common.domain.exception.ResourceNotFoundException;
+import com.example.demo.user.domain.User;
 import com.example.demo.user.domain.UserStatus;
 import com.example.demo.user.domain.dto.UserCreate;
 import com.example.demo.user.domain.dto.UserUpdate;
@@ -41,7 +42,7 @@ public class UserServiceTest {
 
         String email = "kams1011@naver.com";
 
-        UserEntity result = userService.getByEmail(email);
+        User result = userService.getByEmail(email);
 
         assertThat(result.getNickname()).isEqualTo("kams");
 
@@ -53,7 +54,7 @@ public class UserServiceTest {
         String email = "kams1012@naver.com";
 
         assertThatThrownBy(() -> {
-            UserEntity result = userService.getByEmail(email);
+            User result = userService.getByEmail(email);
         }).isInstanceOf(ResourceNotFoundException.class);
 
     }
@@ -64,7 +65,7 @@ public class UserServiceTest {
 
         Long Id = 1L;
 
-        UserEntity result = userService.getById(Id);
+        User result = userService.getById(Id);
 
         assertThat(result.getNickname()).isEqualTo("kams");
 
@@ -75,7 +76,7 @@ public class UserServiceTest {
 
         Long Id = 2L;
         assertThatThrownBy(() -> {
-            UserEntity result = userService.getById(Id);
+            User result = userService.getById(Id);
         }).isInstanceOf(ResourceNotFoundException.class);
 
     }
@@ -90,7 +91,7 @@ public class UserServiceTest {
                 .build();
         BDDMockito.doNothing().when(javaMailSender).send(any(SimpleMailMessage.class));
         // when
-        UserEntity result = userService.create(dto);
+        User result = userService.create(dto);
 
         // then
         assertThat(result.getId()).isNotNull();
@@ -109,7 +110,7 @@ public class UserServiceTest {
         // when
         userService.update(1L, dto);
 
-        UserEntity result = userService.getById(1L);
+        User result = userService.getById(1L);
         // then
         assertThat(result.getId()).isNotNull();
         assertThat(result.getAddress()).isEqualTo("Gyeongi");
@@ -126,7 +127,7 @@ public class UserServiceTest {
 
 
         // then
-        UserEntity result = userService.getById(1L);
+        User result = userService.getById(1L);
         assertThat(result.getLastLoginAt()).isGreaterThan(0L); //FIXME
     }
 
@@ -137,7 +138,7 @@ public class UserServiceTest {
         userService.login(2L);
 
         // then
-        UserEntity result = userService.getById(1L);
+        User result = userService.getById(1L);
         assertThat(result.getLastLoginAt()).isLessThan(1L); //FIXME
     }
 
@@ -149,7 +150,7 @@ public class UserServiceTest {
         userService.verifyEmail(2, "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaab");
         // then
 
-        UserEntity result = userService.getById(2L);
+        User result = userService.getById(2L);
         assertThat(result.getStatus()).isEqualTo(UserStatus.ACTIVE);
     }
 

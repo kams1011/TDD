@@ -20,7 +20,7 @@ public class PostRepositoryImpl implements PostRepository {
     }
 
     @Override
-    public Post save(PostEntity postEntity) {
-        return postJpaRepository.save(postEntity).toModel();
+    public Post save(Post post) {
+        return postJpaRepository.save(PostEntity.fromModel(post)).toModel();
     }
 }
