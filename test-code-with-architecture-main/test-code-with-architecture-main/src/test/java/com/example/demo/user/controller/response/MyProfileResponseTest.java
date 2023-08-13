@@ -6,7 +6,8 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-public class UserResponseTest {
+public class MyProfileResponseTest {
+
 
 
     @Test
@@ -21,11 +22,12 @@ public class UserResponseTest {
                 .certificationCode("AAA_AAAA_AAAA")
                 .build();
         //when
-        UserResponse userResponse = UserResponse.from(user);
+        MyProfileResponse myProfileResponse = MyProfileResponse.from(user);
         //then
-        assertThat(userResponse.getEmail()).isEqualTo("kams1011@naver.com");
-        assertThat(userResponse.getNickname()).isEqualTo("kams");
-        assertThat(userResponse.getId()).isEqualTo(1L);
-        assertThat(userResponse.getStatus()).isEqualTo(UserStatus.PENDING);
+        assertThat(myProfileResponse.getEmail()).isEqualTo("kams1011@naver.com");
+        assertThat(myProfileResponse.getNickname()).isEqualTo("kams");
+        assertThat(myProfileResponse.getAddress()).isEqualTo("Suwon");
+        assertThat(myProfileResponse.getId()).isEqualTo(1L);
+        assertThat(myProfileResponse.getStatus()).isEqualTo(UserStatus.PENDING);
     }
 }
