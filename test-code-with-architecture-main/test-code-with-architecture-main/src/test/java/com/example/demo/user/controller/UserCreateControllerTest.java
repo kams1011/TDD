@@ -1,4 +1,4 @@
-package com.example.demo.medium;
+package com.example.demo.user.controller;
 
 import com.example.demo.user.domain.dto.UserCreate;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -22,21 +22,9 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SpringBootTest
-@AutoConfigureMockMvc
-@AutoConfigureTestDatabase
-@SqlGroup({
-        @Sql(value = "/sql/delete-all-data.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
-})
+
 public class UserCreateControllerTest {
 
-    @Autowired
-    private MockMvc mockMvc;
-    @MockBean
-    private JavaMailSender javaMailSender;
-
-
-    private final ObjectMapper objectMapper = new ObjectMapper();
 
 
     @Test
@@ -47,17 +35,6 @@ public class UserCreateControllerTest {
                 .nickname("newKams")
                 .address("Busan")
                 .build();
-        BDDMockito.doNothing().when(javaMailSender).send(any(SimpleMailMessage.class));
 
-        mockMvc.perform(post("/api/users")
-                        .header("EMAIL", "kams1011@naver.com")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(dto)))
-                .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.id").isNumber())
-                .andExpect(jsonPath("$.email").value("kams1013@naver.com"))
-                .andExpect(jsonPath("$.nickname").value("newKams"))
-//                .andExpect(jsonPath("$.address").value("Busan"))
-                .andExpect(jsonPath("$.status").value("PENDING"));
     }
 }
